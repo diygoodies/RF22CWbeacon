@@ -182,7 +182,7 @@ void setup()
 {
 
   Serial.begin(115200);
-  
+  delay(2000);
   pinMode(LED_BUILTIN, OUTPUT);
 
   pinMode(pinSND, OUTPUT);
@@ -196,7 +196,7 @@ void setup()
   //tt = rtclock.makeTime(mtt) + 25; // additional seconds to compensate build and upload delay
   //rtclock.setTime(tt);
 
-
+  str();
   while (!rf22.init())
     {
       Serial.println("RF22 init failed");
@@ -207,6 +207,7 @@ void setup()
     }
 
   rf22.setFrequency(beacon_r.freq, 0.05);
+  //rf22.setModemConfig(GFSK_Rb57_6Fd28_8);
   rf22.setTxPower(RF22_TXPOW_20DBM);
   rf22.setModeRx(); 
   rf22.spiWrite(RF22_REG_71_MODULATION_CONTROL2, 0x42);
@@ -478,6 +479,7 @@ void loop()
   }
 
 
+
   if((rf22.rssiRead()>rssiprev+20)||(rf22.rssiRead()<rssiprev-20))
   {
    delay(wordpause*3);
@@ -505,7 +507,7 @@ void loop()
  Serial.print ("RSSI: ");
  Serial.println (rf22.rssiRead());
  rssiprev=rf22.rssiRead();
- delay(ditpause); 
+ delay(200); 
 
   
   if (tt1 != tt && dispflag == true )

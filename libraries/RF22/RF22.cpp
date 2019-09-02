@@ -183,10 +183,10 @@ boolean RF22::init()
 
     // Set some defaults. An innocuous ISM frequency, and reasonable pull-in
     setFrequency(434.0, 0.05);
-//    setFrequency(900.0);
+	// setFrequency(900.0);
     // Some slow, reliable default speed and modulation
-    setModemConfig(FSK_Rb2_4Fd36);
-    //setModemConfig(OOK_Rb1_2Bw75);
+    setModemConfig(OOK_Rb1_2Bw75);
+	//setModemConfig(OOK_Rb1_2Bw75);
 
     // Lowish power
     setTxPower(RF22_TXPOW_20DBM);//RF22_TXPOW_8DBM
