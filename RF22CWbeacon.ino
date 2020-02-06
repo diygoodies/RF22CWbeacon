@@ -1,5 +1,4 @@
 /*   STM32F103C8 Blue Pill ( PC13)
-
   Serialport set and display RTC clock , Write by CSNOL https://github.com/csnol/STM32-Examples
   based on https://github.com/rogerclarkmelbourne/Arduino_STM32
   get Unix epoch time from https://www.epochconverter.com/ ;
@@ -28,7 +27,7 @@ typedef struct{
     uint8_t tzone=2;
     bool beep=true;
     bool csbkn=true; 
-    float freq=433.52;
+    float freq=434.52;
 }beacon;
 beacon beacon_r ;
 
@@ -295,6 +294,10 @@ void str(void)
       for(byteToRead=myPtr; numberOfBytes--; ++byteToRead)  
       { 
        Status = EEPROM.read(AddressWrite+AdrRMem, &Data);
+       if ((Data!=0xAA)&&(AdrRMem==0))
+       {
+        break; 
+       }
        *myPtr++=Data;
        Serial.print(Data);
        AdrRMem++;
